@@ -35,7 +35,8 @@
       }
       text {
           fill: #635f5d;
-          font-size: 1.1em;
+          font-size: 1.2em;
+          font-family: sans-serif;
       }
 
       #tooltip {
@@ -183,34 +184,34 @@
                             .style("fill", function(d) { return c(d.Fuel)})
                             .style("opacity", 0.35)
                             .style("stroke", "white")
-                            .on("mouseover", function(d) {
-                        // let xPosition = parseFloat(d3.select(this).attr('x')) + 200
-                        // let yPosition = parseFloat(d3.select(this).attr('y')) + innerHeight / 2
-                        this.setAttribute('r', '10')
+                        .on("mouseover", function(d) {
+                          // let xPosition = parseFloat(d3.select(this).attr('x')) + 200
+                          // let yPosition = parseFloat(d3.select(this).attr('y')) + innerHeight / 2
+                          this.setAttribute('r', '10')
 
-                        let xPosition = d3.mouse(this)[0] - 50
-                        let yPosition = d3.mouse(this)[1] + innerHeight / 2.5    
-                        
-                        const toolTip = d3.select("#tooltip")
-                            .style('left', 200 + xPosition + 'px') 
-                            .style('top', yPosition + 'px')
+                          let xPosition = d3.mouse(this)[0] + innerWidth / 2
+                          let yPosition = d3.mouse(this)[1] + innerHeight 
+                          
+                          const toolTip = d3.select("#tooltip")
+                              .style('left', 200 + xPosition + 'px') 
+                              .style('top', yPosition + 'px')
 
-                        toolTip.select('#make')
-                              .html(d.Make)
+                          toolTip.select('#make')
+                                .html(d.Make)
 
-                        toolTip.select('#value')
-                            .html(d.Fuel + " "
-                                + d.EngineCylinders + " Cyl. <br>"
-                                + "City MPG: " + d.AverageCityMPG + "<br>"
-                                + "Highway MPG: " + d.AverageHighwayMPG
-                            ) 
-                        
-                        d3.select('#tooltip').classed('hidden', false)
-                    })
-                    .on('mouseout', function() {
-                        this.setAttribute('r', '7')
-                        d3.select('#tooltip').classed('hidden', true)
-                    })
+                          toolTip.select('#value')
+                              .html(d.Fuel + " "
+                                  + d.EngineCylinders + " Cyl. <br>"
+                                  + "City MPG: " + d.AverageCityMPG + "<br>"
+                                  + "Highway MPG: " + d.AverageHighwayMPG
+                              ) 
+                          
+                          d3.select('#tooltip').classed('hidden', false)
+                        })
+                        .on('mouseout', function() {
+                          this.setAttribute('r', '7')
+                          d3.select('#tooltip').classed('hidden', true)
+                        })
 
                         
                     //chart title

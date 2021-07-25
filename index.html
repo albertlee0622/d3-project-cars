@@ -15,6 +15,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="d3-project-cars" />
 <script src="https://albertlee0622.github.io/d3-project-cars/d3.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 <script type="application/ld+json">
 {"url":"https://albertlee0622.github.io/d3-project-cars/","@type":"WebSite","headline":"d3-project-cars","name":"d3-project-cars","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
@@ -34,7 +35,34 @@
       }
       text {
           fill: #635f5d;
+          font-size: 1.1em;
       }
+
+      #tooltip {
+				position: absolute;
+				width: 200px;
+				height: auto;
+				padding: 10px;
+				background-color: white;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				pointer-events: none;
+        }
+        
+        #tooltip.hidden {
+            display: none;
+        }
+        
+        #tooltip p {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
   </style>
   </head>
   <body>
@@ -50,7 +78,13 @@
     <section class="main-content">
       <p>CS416 Final Project</p>
       <div id="scatter_overview"></div>
-
+      <div id="tooltip" class="hidden">
+        <p><strong ><span id="make">make</span></strong></p>
+        <p><span id="value">100</span></p>
+    </div>
+    <div id="annotation">
+        <p><span id="note"></span></p>
+    </div>
 
       
     </section>
@@ -64,6 +98,7 @@
 
         var svg = d3.select("#scatter_overview")
                     .append("svg")
+                    .attr("id", "canvas")
                     .attr("width", width)
                     .attr("height", height)
 
@@ -90,7 +125,7 @@
                           .attr('y', 60)
                           .attr('fill', 'black')
                           .attr('text-anchor', 'middle')
-                          .text('Average Highway MPG')
+                          .text('Log Average Highway MPG')
                           .style('font-size', '1.6em')
 
                     xAxisG.append('text')
@@ -98,7 +133,7 @@
                     .attr('y', 40)
                     .attr('fill', 'black')
                     .text('High MPG >>>')
-                    .style('font-size', '1.2em')
+                    .style('font-size', '1.3em')
 
                     var y = d3.scaleLog()
                             .domain([7, 160])
@@ -130,7 +165,7 @@
                           .attr('fill', 'black')
                           .attr('transform', 'rotate(-90)')
                           .text('High MPG >>>')
-                          .style('font-size', '1.2em')
+                          .style('font-size', '1.3em')
 
                     var c = d3.scaleOrdinal()
                             .domain(data.map(d => d.Fuel))
@@ -148,7 +183,36 @@
                             .style("fill", function(d) { return c(d.Fuel)})
                             .style("opacity", 0.35)
                             .style("stroke", "white")
+                            .on("mouseover", function(d) {
+                        // let xPosition = parseFloat(d3.select(this).attr('x')) + 200
+                        // let yPosition = parseFloat(d3.select(this).attr('y')) + innerHeight / 2
+                        this.setAttribute('r', '10')
 
+                        let xPosition = d3.mouse(this)[0] - 50
+                        let yPosition = d3.mouse(this)[1] + innerHeight / 2.5    
+                        
+                        const toolTip = d3.select("#tooltip")
+                            .style('left', 200 + xPosition + 'px') 
+                            .style('top', yPosition + 'px')
+
+                        toolTip.select('#make')
+                              .html(d.Make)
+
+                        toolTip.select('#value')
+                            .html(d.Fuel + " "
+                                + d.EngineCylinders + " Cyl. <br>"
+                                + "City MPG: " + d.AverageCityMPG + "<br>"
+                                + "Highway MPG: " + d.AverageHighwayMPG
+                            ) 
+                        
+                        d3.select('#tooltip').classed('hidden', false)
+                    })
+                    .on('mouseout', function() {
+                        this.setAttribute('r', '7')
+                        d3.select('#tooltip').classed('hidden', true)
+                    })
+
+                        
                     //chart title
                     g.append('text')
                         .attr('x', innerWidth / 2)
@@ -157,6 +221,31 @@
                         .text('MPG Overview by Fuel Type')
                         .style('font-family', 'sans-serif')
                         .style('font-size', '2em')
+
+                    //add annotation
+                    const annotations = [
+                      {
+                        note: {
+                          label: " are clusterd at high MPG positions",
+                          title: "Electric Cars"
+                        },
+                        x: 450,
+                        y: 120
+                      }
+                    ]
+                    const makeAnnotations = d3.annotation().annotations(annotations)
+                    d3.select("#canvas").append('g').call(makeAnnotations)
+                  
+                   //add legend
+                   const colorLegend = d3.select("#canvas")
+                   let legendCx = innerWidth
+                   let legendCy = innerHeight
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy).attr('r', 5).style('fill', 'green').style('opacity', 0.35)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 15).attr('r', 5).style('fill', 'blue').style('opacity', 0.35)     
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 30).attr('r', 5).style('fill', 'red').style('opacity', 0.35)
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('Electricity').style('font-size', '0.8em').attr("alignment-baseline","middle")
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 15).text('Diesel').style('font-size', '0.8em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 30).text('Gasoline').style('font-size', '0.8em').attr("alignment-baseline","middle")     
 
         })
         

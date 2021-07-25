@@ -187,8 +187,8 @@
                           // let yPosition = parseFloat(d3.select(this).attr('y')) + innerHeight / 2
                           this.setAttribute('r', '10')
 
-                          let xPosition = d3.mouse(this)[0] + 3 * innerWidth / 2
-                          let yPosition = d3.mouse(this)[1] + innerHeight / 3 
+                          let xPosition = d3.mouse(this)[0] + innerWidth
+                          let yPosition = d3.mouse(this)[1] + innerHeight / 2 
                           
                           const toolTip = d3.select("#tooltip")
                               .style('left', 200 + xPosition + 'px') 

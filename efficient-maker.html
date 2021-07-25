@@ -69,13 +69,10 @@
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
             d3.csv("https://albertlee0622.github.io/d3-project-cars/cars2017.csv", function(data) {
-                let data = data.filter(function(d) { return d.Fuel === 'Electricity'})   
                 let cityMpgByCyilnder = d3.nest()
                     .key(function(d) { return d.Make; })
                     .rollup(function(v) { return d3.mean(v, function(d) { return d.AverageCityMPG; })})
                     .entries(data)
-
-                console.log(cityMpgByCyilnder)
                 
                 cityMpgByCyilnder.sort(function(a, b) {
                     return d3.descending(a.value, b.value)

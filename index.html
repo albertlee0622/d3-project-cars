@@ -183,13 +183,13 @@
                             .style("opacity", 0.35)
                             .style("stroke", "white")
                         .on("mouseover", function(d) {
-                          let xPosition = parseFloat(d3.select(this).attr('x'))
-                          let yPosition = parseFloat(d3.select(this).attr('y'))
+                          // let xPosition = parseFloat(d3.select(this).attr('x'))
+                          // let yPosition = parseFloat(d3.select(this).attr('y'))
                           
                           this.setAttribute('r', '10')
 
-                          // let xPosition = d3.mouse(this)[0] + innerWidth
-                          // let yPosition = d3.mouse(this)[1] + innerHeight / 2 
+                          let xPosition = d3.mouse(this)[0] + 200
+                          let yPosition = d3.mouse(this)[1] + 200
                           
                           const toolTip = d3.select("#tooltip")
                               .style('left', 200 + xPosition + 'px') 

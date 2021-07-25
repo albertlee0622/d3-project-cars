@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>d3-project-cars</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="d3-project-cars" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://albertlee0622.github.io/d3-project-cars/" />
+<meta property="og:url" content="https://albertlee0622.github.io/d3-project-cars/" />
+<meta property="og:site_name" content="d3-project-cars" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="d3-project-cars" />
+<script src="https://albertlee0622.github.io/d3-project-cars/d3.js"></script>
+<script type="application/ld+json">
+{"url":"https://albertlee0622.github.io/d3-project-cars/","@type":"WebSite","headline":"d3-project-cars","name":"d3-project-cars","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
+    <style>
+      .domain {
+          stroke: #c0c0bb;
+      }
+      .tick text {
+          fill: #635f5d;
+      }
+      .tick line {
+          stroke: #c0c0bb;
+      }
+      text {
+          fill: #635f5d;
+      }
+  </style>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">d3-project-cars</h1>
+      <h2 class="project-tagline"></h2>
+      
+        <a href="https://github.com/albertlee0622/d3-project-cars" class="btn">View on GitHub</a>
+      
+      
+    </section>
+
+    <section class="main-content">
+      <p>CS416 Final Project</p>
+      <div id="scatter_overview"></div>
+
+
+      
+    </section>
+
+    <script>
+        let width = 800
+        let height = 800
+        let margin = {top: 100, right: 100, bottom: 100, left: 100};
+        let innerWidth = width - margin.left - margin.right;
+        let innerHeight = height - margin.top - margin.bottom;
+
+        var svg = d3.select("#scatter_overview")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+
+             g = svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+                d3.csv("https://albertlee0622.github.io/d3-project-cars/cars2017.csv", function(data) {
+                    var x = d3.scaleLog()
+                            .domain([15, 130])
+                            .range([0, innerWidth])
+
+                    const topAxisG = g.append('g')
+                                      .call(d3.axisBottom(x))
+
+                    topAxisG.selectAll('.tick').remove()
+
+                    const xAxisG = g.append("g")
+                        .attr("transform", "translate(0," + innerHeight + ")")
+                        
+                    xAxisG.call(d3.axisBottom(x))
+
+                    xAxisG.append('text')
+                          .attr('x', innerWidth / 2)
+                          .attr('y', 60)
+                          .attr('fill', 'black')
+                          .attr('text-anchor', 'middle')
+                          .text('Average Highway MPG')
+                          .style('font-size', '1.6em')
+
+                    xAxisG.append('text')
+                    .attr('x', innerWidth - innerWidth / 8)
+                    .attr('y', 40)
+                    .attr('fill', 'black')
+                    .text('High MPG >>>')
+                    .style('font-size', '1.2em')
+
+                    var y = d3.scaleLog()
+                            .domain([7, 160])
+                            .range([innerHeight, 0])
+
+                    const rightAxisG = g.append('g')
+                                .attr('transform', 'translate(' + innerWidth + ', 0)')                
+                                .call(d3.axisLeft(y))
+                    
+                    rightAxisG.selectAll('.tick').remove()
+                        
+                    yAxisG = g.append("g")
+
+
+                    yAxisG.call(d3.axisLeft(y))
+
+                    yAxisG.append('text')
+                          .attr('x', -innerHeight / 2)
+                          .attr('y', -65)
+                          .attr('fill', 'black')
+                          .attr('transform', 'rotate(-90)')
+                          .attr('text-anchor', 'middle')
+                          .text('Log Average City MPG')
+                          .style('font-size', '1.6em')
+
+                    yAxisG.append('text')
+                          .attr('x', -30)
+                          .attr('y', -40)
+                          .attr('fill', 'black')
+                          .attr('transform', 'rotate(-90)')
+                          .text('High MPG >>>')
+                          .style('font-size', '1.2em')
+
+                    var c = d3.scaleOrdinal()
+                            .domain(data.map(d => d.Fuel))
+                            .range(["red", "blue", "green"])
+                    
+                    //chart content
+                    g.append("g")
+                       .selectAll("circle")
+                       .data(data)
+                       .enter()
+                       .append("circle")
+                            .attr("cx", function(d) { return x(d.AverageHighwayMPG) })
+                            .attr("cy", function(d) { return y(d.AverageCityMPG) })
+                            .attr("r", 7)
+                            .style("fill", function(d) { return c(d.Fuel)})
+                            .style("opacity", 0.35)
+                            .style("stroke", "white")
+
+                    //chart title
+                    g.append('text')
+                        .attr('x', innerWidth / 2)
+                        .attr('y', -40)
+                        .attr('text-anchor', 'middle')
+                        .text('MPG Overview by Fuel Type')
+                        .style('font-family', 'sans-serif')
+                        .style('font-size', '2em')
+
+        })
+        
+    </script>
+    <footer class="site-footer">
+
+    <span class="site-footer-owner"><a href="https://github.com/albertlee0622/d3-project-cars">d3-project-cars</a> is maintained by <a href="https://github.com/albertlee0622">albertlee0622</a>.</span>
+    
+    <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+</footer>   
+  </body>
+</html>

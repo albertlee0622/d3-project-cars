@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>d3-project-cars</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="d3-project-cars" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://albertlee0622.github.io/d3-project-cars/" />
+<meta property="og:url" content="https://albertlee0622.github.io/d3-project-cars/" />
+<meta property="og:site_name" content="d3-project-cars" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="d3-project-cars" />
+<script src="https://albertlee0622.github.io/d3-project-cars/d3.js"></script>
+<script type="application/ld+json">
+{"url":"https://albertlee0622.github.io/d3-project-cars/","@type":"WebSite","headline":"d3-project-cars","name":"d3-project-cars","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
+    <style>
+        .domain {
+            stroke: #c0c0bb;
+        }
+        .tick text {
+            fill: #635f5d;
+        }
+        .tick line {
+            stroke: #c0c0bb;
+        }
+        text {
+            fill: #635f5d;
+        }
+    </style>
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">d3-project-cars</h1>
+      <h2 class="project-tagline"></h2>
+      
+        <a href="https://github.com/albertlee0622/d3-project-cars" class="btn">View on GitHub</a>
+      
+      
+    </section>
+
+    <section class="main-content">
+      <p>CS416 Final Project</p>
+      <div id="bar-cylinder"></div>
+
+    </section>
+
+    <script>
+        let width = 800;
+        let height = 600;
+        let margin = {top: 100, right: 100, bottom: 100, left: 160};
+        let innerWidth = width - margin.left - margin.right;
+        let innerHeight = height - margin.top - margin.bottom;
+
+        var svg = d3.select("#bar-cylinder")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                
+            g = svg.append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+            d3.csv("https://albertlee0622.github.io/d3-project-cars/cars2017.csv", function(data) {
+                let data = data.filter(function(d) { return d.Fuel === 'Electricity'})   
+                let cityMpgByCyilnder = d3.nest()
+                    .key(function(d) { return d.Make; })
+                    .rollup(function(v) { return d3.mean(v, function(d) { return d.AverageCityMPG; })})
+                    .entries(data)
+
+                console.log(cityMpgByCyilnder)
+                
+                cityMpgByCyilnder.sort(function(a, b) {
+                    return d3.descending(a.value, b.value)
+                })
+
+                cityMpgByCyilnder = cityMpgByCyilnder.slice(0, 10)
+                // console.log(typeof cityMpgByCyilnder)
+                const xScale = d3.scaleLinear()
+                                .domain([0, d3.max(cityMpgByCyilnder, d => d.value )])
+                                .range([0, innerWidth])
+                
+                const yScale = d3.scaleBand()
+                                .domain(cityMpgByCyilnder.map(d => d.key)
+                                                         .sort((a, b) => d3.ascending(a.value, b.value)))
+                                .range([0, innerHeight])
+                                .padding(0.2)
+
+                //x-axis tick 
+                const xAxisG = g.append('g')
+
+                xAxisG.attr('transform', 'translate(0, ' + innerHeight + ')')
+                    .style('font-size', '1.1em')
+                    .call(d3.axisBottom(xScale)
+                            .tickSize(-innerHeight)
+                        )
+                    
+                xAxisG.append('text')
+                    .attr('x', innerWidth / 2)
+                    .attr('y', 60)
+                    .attr('fill', 'black')
+                    .text('Estimated Average MPG')
+                    .style('font-size', '1.2em')
+
+                //y-axis tick 
+                const yAxisG = g.append('g')
+
+                yAxisG.style('font-size', '1.1em')
+                    .call(d3.axisLeft(yScale))
+                    .select('.domain')
+                      .remove()
+                
+                // yAxisG.append('text')
+                //     .attr('x', -innerHeight / 2)
+                //     .attr('y', -100)
+                //     .attr('fill', 'black')
+                //     .attr('transform', 'rotate(-90)')
+                //     .attr('text-anchor', 'middle')
+                //     .text('Number of Cylinder')
+                //     .style('font-size', '1.2em')
+                
+                //chart content
+                g.selectAll('rect')
+                    .data(cityMpgByCyilnder)
+                    .enter()
+                    .append('rect')
+                    .attr('y', function(d) { return yScale(d.key) })
+                    .attr('width', function(d) { return xScale(d.value) })
+                    .attr('height', yScale.bandwidth())
+                    .attr('fill', 'steelblue')
+
+                //chart title
+                g.append('text')
+                    .attr('x', innerWidth / 2)
+                    .attr('y', -20)
+                    .attr('text-anchor', 'middle')
+                    .text('10 Energy Efficient Car Makers')
+                    .style('font-family', 'sans-serif')
+                    .style('font-size', '2em')
+            })
+        
+    </script>
+    <footer class="site-footer">
+
+    <span class="site-footer-owner"><a href="https://github.com/albertlee0622/d3-project-cars">d3-project-cars</a> is maintained by <a href="https://github.com/albertlee0622">albertlee0622</a>.</span>
+    
+    <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+</footer>   
+  </body>
+</html>

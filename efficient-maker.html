@@ -99,7 +99,7 @@
             d3.csv("https://albertlee0622.github.io/d3-project-cars/cars2017.csv", function(data) {
                 let cityMpgByCyilnder = d3.nest()
                     .key(function(d) { return d.Make; })
-                    .rollup(function(v) { return d3.mean(v, function(d) { return d.AverageCityMPG; })})
+                    .rollup(function(v) { return d3.mean(v, function(d) { return d.AverageHighwayMPG; })})
                     .entries(data)
                 
                 cityMpgByCyilnder.sort(function(a, b) {

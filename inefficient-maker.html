@@ -69,10 +69,9 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">d3-project-cars</h1>
-      <!-- <h2 class="project-tagline"></h2> -->
-      
-        <!-- <a href="https://github.com/albertlee0622/d3-project-cars" class="btn">View on GitHub</a> -->
-      
+        <a href="https://github.com/pages-themes/cayman/zipball/master" class="btn">1</a>
+        <a href="https://github.com/pages-themes/cayman/zipball/master" class="btn">2</a>
+        <a href="https://github.com/pages-themes/cayman/zipball/master" class="btn">3</a>
     </section>
 
     <section class="main-content">
@@ -87,7 +86,7 @@
     <script>
         let width = 800;
         let height = 600;
-        let margin = {top: 100, right: 100, bottom: 100, left: 160};
+        let margin = {top: 100, right: 100, bottom: 100, left: 180};
         let innerWidth = width - margin.left - margin.right;
         let innerHeight = height - margin.top - margin.bottom;
 
@@ -106,7 +105,7 @@
                     .entries(data)
                 
                 cityMpgByCyilnder.sort(function(a, b) {
-                    return d3.descending(a.value, b.value)
+                    return d3.ascending(a.value, b.value)
                 })
 
                 cityMpgByCyilnder = cityMpgByCyilnder.slice(0, 10)
@@ -149,7 +148,7 @@
                     .attr('x', innerWidth / 2)
                     .attr('y', -40)
                     .attr('text-anchor', 'middle')
-                    .text('10 Energy Efficient Car Makers')
+                    .text('10 High Energy Consuming Car Makers')
                     .style('font-family', 'sans-serif')
                     .style('font-size', '2em')
 

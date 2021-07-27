@@ -22,6 +22,10 @@
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
     <style>
+        .nav {
+            display:flex;
+            flex-direction: row;
+        }
         .domain {
             stroke: #c0c0bb;
         }
@@ -64,11 +68,29 @@
         rect:hover {
             fill:slategrey;
         }
+
+        .button {
+            background-color: #555555a9; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+       .button:hover {
+           background-color:#555555;
+        }
+        #button-use {background-color: #555555;} 
     </style>
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">d3-project-cars</h1>
+      <h1 class="project-name">10 Energy Efficient Car Makers</h1>
       <!-- <h2 class="project-tagline"></h2> -->
       
         <!-- <a href="https://github.com/albertlee0622/d3-project-cars" class="btn">View on GitHub</a> -->
@@ -76,7 +98,17 @@
     </section>
 
     <section class="main-content">
-      <p>CS416 Final Project</p>
+        <div class="nav">
+            <form action="https://albertlee0622.github.io/d3-project-cars/">
+                <button type="submit" class="button">1</button>
+            </form>
+            <form action="https://albertlee0622.github.io/d3-project-cars/inefficient-maker.html">
+                <button type="submit" class="button">2</button>
+            </form>
+            <form>
+                <button type="submit" class="button" id="button-use">3</button>
+            </form>
+        </div>
       <div id="bar-cylinder"></div>
       <div id="tooltip" class="hidden">
           <p><span id="value">100</span></p>

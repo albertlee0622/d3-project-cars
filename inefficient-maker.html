@@ -21,7 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
-    <style>
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- <style>
         .nav {
             display:flex;
             flex-direction: row;
@@ -77,7 +79,7 @@
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 15px;
             margin: 4px 2px;
             cursor: pointer;
         }
@@ -86,7 +88,7 @@
            background-color:#555555;
         }
         #button-use {background-color: #555555;} 
-    </style>
+    </style> -->
   </head>
   <body>
     <section class="page-header">
@@ -151,7 +153,7 @@
                 const xAxisG = g.append('g')
 
                 xAxisG.attr('transform', 'translate(0, ' + innerHeight + ')')
-                    .style('font-size', '1.1em')
+                    .style('font-size', '1em')
                     .call(d3.axisBottom(xScale)
                             .tickSize(-innerHeight)
                         )
@@ -161,12 +163,12 @@
                     .attr('y', 60)
                     .attr('fill', 'black')
                     .text('Estimated Average MPG')
-                    .style('font-size', '16px')
+                    .style('font-size', '18px')
 
                 //y-axis tick 
                 const yAxisG = g.append('g')
 
-                yAxisG.style('font-size', '16px')
+                yAxisG.style('font-size', '18px')
                     .call(d3.axisLeft(yScale))
                     .select('.domain')
                       .remove()
@@ -178,7 +180,7 @@
                     .attr('text-anchor', 'middle')
                     .text('10 Low MPG Car Makers')
                     .style('font-family', 'sans-serif')
-                    .style('font-size', '18px')
+                    .style('font-size', '20px')
 
                 //chart content
                 g.selectAll('rect')

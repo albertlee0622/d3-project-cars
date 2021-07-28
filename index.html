@@ -23,7 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
-    <style>
+    <link rel="stylesheet" href="./style.css">
+    <!-- <style>
       .nav {
           display:flex;
           flex-direction: row;
@@ -72,23 +73,23 @@
       }
 
       .button {
-          background-color: #555555a9; /* Green */
-          border: none;
-          color: white;
-          padding: 10px 25px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 13px;
-          margin: 2px 1px;
-          cursor: pointer;
-      }
+            background-color: #555555a9;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
 
-     .button:hover {
-         background-color:#555555;
-      }
-      #button-use {background-color: #555555;} 
-  </style>
+       .button:hover {
+           background-color:#555555;
+        }
+        #button-use {background-color: #555555;} 
+  </style> -->
   </head>
   <body>
     <section class="page-header">
@@ -161,14 +162,14 @@
                           .attr('fill', 'black')
                           .attr('text-anchor', 'middle')
                           .text('Log Average Highway MPG')
-                          .style('font-size', '16px')
+                          .style('font-size', '18px')
 
                     xAxisG.append('text')
                     .attr('x', innerWidth - innerWidth / 8)
                     .attr('y', 40)
                     .attr('fill', 'black')
                     .text('High MPG >>>')
-                    .style('font-size', '15px')
+                    .style('font-size', '16px')
 
                     var y = d3.scaleLog()
                             .domain([8, 160])
@@ -192,7 +193,7 @@
                           .attr('transform', 'rotate(-90)')
                           .attr('text-anchor', 'middle')
                           .text('Log Average City MPG')
-                          .style('font-size', '16px')
+                          .style('font-size', '18px')
 
                     yAxisG.append('text')
                           .attr('x', -10)
@@ -200,7 +201,7 @@
                           .attr('fill', 'black')
                           .attr('transform', 'rotate(-90)')
                           .text('High MPG >>>')
-                          .style('font-size', '15px')
+                          .style('font-size', '16px')
 
                     var c = d3.scaleOrdinal()
                             .domain(data.map(d => d.Fuel))
@@ -250,7 +251,7 @@
                         .attr('text-anchor', 'middle')
                         .text('MPG Overview by Fuel Type')
                         .style('font-family', 'sans-serif')
-                        .style('font-size', '18px')
+                        .style('font-size', '20px')
 
                     //add annotation
                     const annotations = [
@@ -273,9 +274,9 @@
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy).attr('r', 5).style('fill', 'green').style('opacity', 0.35)
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 20).attr('r', 5).style('fill', 'blue').style('opacity', 0.35)     
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 40).attr('r', 5).style('fill', 'red').style('opacity', 0.35)
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('Electricity').style('font-size', '1em').attr("alignment-baseline","middle")
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 20).text('Diesel').style('font-size', '1em').attr("alignment-baseline","middle")     
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 40).text('Gasoline').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('Electricity').style('font-size', '15px').attr("alignment-baseline","middle")
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 20).text('Diesel').style('font-size', '15px').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 40).text('Gasoline').style('font-size', '15px').attr("alignment-baseline","middle")     
 
         })
         

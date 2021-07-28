@@ -59,8 +59,8 @@
     </section>
 
     <script>
-        let width = 850;
-        let height = 700;
+        let width = 880;
+        let height = 730;
         let margin = {top: 100, right: 100, bottom: 100, left: 180};
         let innerWidth = width - margin.left - margin.right;
         let innerHeight = height - margin.top - margin.bottom;
@@ -86,7 +86,7 @@
 
                     const xAxisG = g.append("g")
                         .attr("transform", "translate(0," + innerHeight + ")")
-                        
+                        .style("font-size", "1em")
                     xAxisG.call(d3.axisBottom(x))
 
                     xAxisG.append('text')
@@ -95,14 +95,14 @@
                           .attr('fill', 'black')
                           .attr('text-anchor', 'middle')
                           .text('Log Avg. Highway MPG')
-                          .style('font-size', '18px')
+                          .style('font-size', '1em')
 
                     xAxisG.append('text')
                     .attr('x', innerWidth - innerWidth / 8)
                     .attr('y', 40)
                     .attr('fill', 'black')
                     .text('High MPG >>>')
-                    .style('font-size', '16px')
+                    .style('font-size', '1em')
 
                     var y = d3.scaleLog()
                             .domain([8, 160])
@@ -115,7 +115,7 @@
                     rightAxisG.selectAll('.tick').remove()
                         
                     yAxisG = g.append("g")
-
+                              .style('font-size', "1em")  
 
                     yAxisG.call(d3.axisLeft(y))
 
@@ -126,7 +126,7 @@
                           .attr('transform', 'rotate(-90)')
                           .attr('text-anchor', 'middle')
                           .text('Log Avg. City MPG')
-                          .style('font-size', '18px')
+                          .style('font-size', '1em')
 
                     yAxisG.append('text')
                           .attr('x', -10)
@@ -134,7 +134,7 @@
                           .attr('fill', 'black')
                           .attr('transform', 'rotate(-90)')
                           .text('High MPG >>>')
-                          .style('font-size', '16px')
+                          .style('font-size', '1em')
 
                     var c = d3.scaleOrdinal()
                             .domain(data.map(d => d.Fuel))
@@ -184,7 +184,7 @@
                         .attr('text-anchor', 'middle')
                         .text('MPG Overview by Fuel Type')
                         .style('font-family', 'sans-serif')
-                        .style('font-size', '20px')
+                        .style('font-size', '1.5em')
 
                     //add annotation
                     const annotations = [
@@ -207,9 +207,9 @@
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy).attr('r', 5).style('fill', 'green').style('opacity', 0.35)
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 20).attr('r', 5).style('fill', 'blue').style('opacity', 0.35)     
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 40).attr('r', 5).style('fill', 'red').style('opacity', 0.35)
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('Electricity').style('font-size', '15px').attr("alignment-baseline","middle")
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 20).text('Diesel').style('font-size', '15px').attr("alignment-baseline","middle")     
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 40).text('Gasoline').style('font-size', '15px').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('Electricity').style('font-size', '1em').attr("alignment-baseline","middle")
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 20).text('Diesel').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 40).text('Gasoline').style('font-size', '1em').attr("alignment-baseline","middle")     
 
         })
         

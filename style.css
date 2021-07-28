@@ -13,11 +13,12 @@
 }
 text {
     fill: #635f5d;
+    font-size:18px
 }
 
 #tooltip {
         position: absolute;
-        width: 150px;
+        width: 180px;
         height: auto;
         padding: 10px;
         background-color: white;
@@ -37,7 +38,7 @@ text {
 #tooltip p {
     margin: 0;
     font-family: sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
 }
 
@@ -64,7 +65,7 @@ rect:hover {
 
 #button-use {background-color: #555555;} 
 
-.site-footer-credits {
-    display:flex;
-    align-items: center;
+footer {
+    text-align:center;
+    margin: 0 auto
 }

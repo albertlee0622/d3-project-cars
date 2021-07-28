@@ -57,8 +57,8 @@
     </section>
 
     <script>
-        let width = 850;
-        let height = 700;
+        let width = 880;
+        let height = 730;
         let margin = {top: 100, right: 100, bottom: 100, left: 180};
         let innerWidth = width - margin.left - margin.right;
         let innerHeight = height - margin.top - margin.bottom;
@@ -105,12 +105,12 @@
                     .attr('y', 60)
                     .attr('fill', 'black')
                     .text('Estimated Avg. MPG')
-                    .style('font-size', '18px')
+                    .style('font-size', '1em')
 
                 //y-axis tick 
                 const yAxisG = g.append('g')
 
-                yAxisG.style('font-size', '18px')
+                yAxisG.style('font-size', '1em')
                     .call(d3.axisLeft(yScale))
                     .select('.domain')
                       .remove()
@@ -122,7 +122,7 @@
                     .attr('text-anchor', 'middle')
                     .text('10 Highest MPG Car Makers')
                     .style('font-family', 'sans-serif')
-                    .style('font-size', '20px')
+                    .style('font-size', '1.5em')
 
                 //chart content
                 g.selectAll('rect')

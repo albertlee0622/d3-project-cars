@@ -22,9 +22,6 @@
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
     <style>
-        text { 
-            font-size: 18px
-        }
         .nav {
             display:flex;
             flex-direction: row;
@@ -116,8 +113,8 @@
     </section>
 
     <script>
-        let width = 880;
-        let height = 800;
+        let width = 780;
+        let height = 650;
         let margin = {top: 100, right: 100, bottom: 100, left: 180};
         let innerWidth = width - margin.left - margin.right;
         let innerHeight = height - margin.top - margin.bottom;
@@ -164,12 +161,12 @@
                     .attr('y', 60)
                     .attr('fill', 'black')
                     .text('Estimated Average MPG')
-                    .style('font-size', '1em')
+                    .style('font-size', '16px')
 
                 //y-axis tick 
                 const yAxisG = g.append('g')
 
-                yAxisG.style('font-size', '1.1em')
+                yAxisG.style('font-size', '16px')
                     .call(d3.axisLeft(yScale))
                     .select('.domain')
                       .remove()
@@ -181,7 +178,7 @@
                     .attr('text-anchor', 'middle')
                     .text('10 Low MPG Car Makers')
                     .style('font-family', 'sans-serif')
-                    .style('font-size', '1.5em')
+                    .style('font-size', '18px')
 
                 //chart content
                 g.selectAll('rect')

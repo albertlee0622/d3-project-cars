@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://albertlee0622.github.io/d3-project-cars/style.css">
   </head>
   <body>
     <section class="page-header">
@@ -95,7 +95,7 @@
                           .attr('y', 60)
                           .attr('fill', 'black')
                           .attr('text-anchor', 'middle')
-                          .text('Log Average Highway MPG')
+                          .text('Log Avg. Highway MPG')
                           .style('font-size', '18px')
 
                     xAxisG.append('text')
@@ -126,7 +126,7 @@
                           .attr('fill', 'black')
                           .attr('transform', 'rotate(-90)')
                           .attr('text-anchor', 'middle')
-                          .text('Log Average City MPG')
+                          .text('Log Avg. City MPG')
                           .style('font-size', '18px')
 
                     yAxisG.append('text')
@@ -203,7 +203,7 @@
                   
                    //add legend
                    const colorLegend = d3.select("#canvas")
-                   let legendCx = innerWidth
+                   let legendCx = innerWidth + 10
                    let legendCy = innerHeight
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy).attr('r', 5).style('fill', 'green').style('opacity', 0.35)
                    colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 20).attr('r', 5).style('fill', 'blue').style('opacity', 0.35)     

@@ -27,11 +27,10 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">MPG Data Analysis</h1>
+      <h2 class="project-name">MPG Data Analysis</h2>
       <!-- <h2 class="project-tagline"></h2>
       
         <a href="https://github.com/albertlee0622/d3-project-cars" class="btn">View on GitHub</a> -->
-      
       
     </section>
 
@@ -157,8 +156,8 @@
                           this.setAttribute('r', '8')
                           
                           const toolTip = d3.select("#tooltip")
-                              .style('left', d3.event.clientX + 10 + 'px') 
-                              .style('top', d3.event.clientY + 'px')
+                              .style('left', d3.event.clientX + 50 + 'px') 
+                              .style('top', d3.event.clientY + 20 + 'px')
 
                           toolTip.select('#make')
                                 .html(d.Make)

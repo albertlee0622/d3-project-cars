@@ -22,6 +22,9 @@
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
     <style>
+        text { 
+            font-size: 18px
+        }
         .nav {
             display:flex;
             flex-direction: row;
@@ -117,9 +120,9 @@
     </section>
 
     <script>
-        let width = 800;
-        let height = 600;
-        let margin = {top: 100, right: 100, bottom: 100, left: 160};
+        let width = 880;
+        let height = 800;
+        let margin = {top: 100, right: 100, bottom: 100, left: 180};
         let innerWidth = width - margin.left - margin.right;
         let innerHeight = height - margin.top - margin.bottom;
 
@@ -182,7 +185,7 @@
                     .attr('text-anchor', 'middle')
                     .text('10 High MPG Car Makers')
                     .style('font-family', 'sans-serif')
-                    .style('font-size', '2em')
+                    .style('font-size', '1.5em')
 
                 //chart content
                 g.selectAll('rect')

@@ -24,72 +24,6 @@
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="/d3-project-cars/assets/css/style.css?v=c68911c8d3f230b5a2974afc7ee6a3237742feed">
     <link rel="stylesheet" href="./style.css">
-    <!-- <style>
-      .nav {
-          display:flex;
-          flex-direction: row;
-      }
-      .domain {
-          stroke: #c0c0bb;
-      }
-      .tick text {
-          fill: #635f5d;
-      }
-      .tick line {
-          stroke: #c0c0bb;
-      }
-      text {
-          fill: #635f5d;
-      }
-
-      #tooltip {
-      position: absolute;
-      width: 200px;
-      height: auto;
-      padding: 10px;
-      background-color: white;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-      -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-      pointer-events: none;
-      }
-      
-      #tooltip.hidden {
-          display: none;
-      }
-      
-      #tooltip p {
-          margin: 0;
-          font-family: sans-serif;
-          font-size: 16px;
-          line-height: 20px;
-      }
-
-      rect:hover {
-          fill:slategrey;
-      }
-
-      .button {
-            background-color: #555555a9;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 15px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-
-       .button:hover {
-           background-color:#555555;
-        }
-        #button-use {background-color: #555555;} 
-  </style> -->
   </head>
   <body>
     <section class="page-header">
@@ -223,7 +157,7 @@
                           this.setAttribute('r', '8')
                           
                           const toolTip = d3.select("#tooltip")
-                              .style('left', d3.event.clientX + 50 + 'px') 
+                              .style('left', d3.event.clientX + 10 + 'px') 
                               .style('top', d3.event.clientY + 'px')
 
                           toolTip.select('#make')

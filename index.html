@@ -43,7 +43,7 @@
 
       #tooltip {
       position: absolute;
-      width: 50px;
+      width: 200px;
       height: auto;
       padding: 10px;
       background-color: white;
@@ -92,7 +92,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">MPG Overview by Fuel Type</h1>
+      <h1 class="project-name">MPG Data Analysis</h1>
       <!-- <h2 class="project-tagline"></h2>
       
         <a href="https://github.com/albertlee0622/d3-project-cars" class="btn">View on GitHub</a> -->
@@ -125,9 +125,9 @@
     </section>
 
     <script>
-        let width = 800
-        let height = 800
-        let margin = {top: 100, right: 100, bottom: 100, left: 100};
+        let width = 800;
+        let height = 600;
+        let margin = {top: 100, right: 100, bottom: 100, left: 180};
         let innerWidth = width - margin.left - margin.right;
         let innerHeight = height - margin.top - margin.bottom;
 
@@ -195,7 +195,7 @@
                           .style('font-size', '1.8em')
 
                     yAxisG.append('text')
-                          .attr('x', -30)
+                          .attr('x', -10)
                           .attr('y', -40)
                           .attr('fill', 'black')
                           .attr('transform', 'rotate(-90)')
@@ -214,22 +214,16 @@
                        .append("circle")
                             .attr("cx", function(d) { return x(d.AverageHighwayMPG) })
                             .attr("cy", function(d) { return y(d.AverageCityMPG) })
-                            .attr("r", 7)
+                            .attr("r", 6)
                             .style("fill", function(d) { return c(d.Fuel)})
                             .style("opacity", 0.35)
                             .style("stroke", "white")
                         .on("mouseover", function(d) {
-                          // let xPosition = parseFloat(d3.select(this).attr('x'))
-                          // let yPosition = parseFloat(d3.select(this).attr('y'))
-                          
                           this.setAttribute('r', '10')
-
-                          let xPosition = d3.mouse(this)[0] + 300
-                          let yPosition = d3.mouse(this)[1] + 250
                           
                           const toolTip = d3.select("#tooltip")
-                              .style('left', 200 + xPosition + 'px') 
-                              .style('top', yPosition + 'px')
+                              .style('left', d3.event.clientX + 50 + 'px') 
+                              .style('top', d3.event.clientY + 'px')
 
                           toolTip.select('#make')
                                 .html(d.Make)

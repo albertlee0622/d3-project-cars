@@ -41,7 +41,7 @@
 
         #tooltip {
 				position: absolute;
-				width: 50px;
+				width: 100px;
 				height: auto;
 				padding: 10px;
 				background-color: white;
@@ -70,7 +70,7 @@
         }
 
         .button {
-            background-color: #555555a9; /* Green */
+            background-color: #555555a9;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -90,7 +90,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">10 High Energy Consuming Car Makers</h1>
+      <h1 class="project-name">MPG Data Analysis</h1>
     </section>
 
     <section class="main-content">
@@ -138,7 +138,6 @@
                 })
 
                 cityMpgByCyilnder = cityMpgByCyilnder.slice(0, 10)
-                // console.log(typeof cityMpgByCyilnder)
                 const xScale = d3.scaleLinear()
                                 .domain([0, d3.max(data, d => d.AverageCombinedMPG )])
                                 .range([0, innerWidth])
@@ -177,7 +176,7 @@
                     .attr('x', innerWidth / 2)
                     .attr('y', -40)
                     .attr('text-anchor', 'middle')
-                    .text('10 High Energy Consuming Car Makers')
+                    .text('10 Low MPG Car Makers')
                     .style('font-family', 'sans-serif')
                     .style('font-size', '2em')
 
@@ -191,14 +190,9 @@
                     .attr('height', yScale.bandwidth())
                     .attr('fill', 'steelblue')
                     .on("mouseover", function(d) {
-                        // let xPosition = parseFloat(d3.select(this).attr('x')) + 200
-                        // let yPosition = parseFloat(d3.select(this).attr('y')) + innerHeight / 2
-                        let xPosition = d3.mouse(this)[0] 
-                        let yPosition = d3.mouse(this)[1] + innerHeight / 2
-
                         d3.select("#tooltip")
-                            .style('left', 200 + xPosition + 'px') 
-                            .style('top', yPosition + 'px')
+                            .style('left', 200 + d3.event.clientX + 'px') 
+                            .style('top', d3.event.clientY + 'px')
                             .select('#value')
                             .text(d3.format(".2f")(d.value))
                         

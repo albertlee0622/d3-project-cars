@@ -65,5 +65,6 @@ rect:hover {
 #button-use {background-color: #555555;} 
 
 .site-footer-credits {
-    text-align: center;
+    display:flex;
+    align-items: center;
 }

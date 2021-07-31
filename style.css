@@ -13,7 +13,8 @@
 }
 text {
     fill: #635f5d;
-    font-size:18px
+    font-size:18px;
+    font-family: sans-serif;
 }
 
 #tooltip {
@@ -38,7 +39,7 @@ text {
 #tooltip p {
     margin: 0;
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 20px;
 }
 
@@ -54,7 +55,7 @@ rect:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
 }

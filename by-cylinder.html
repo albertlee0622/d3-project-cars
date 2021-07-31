@@ -103,7 +103,7 @@
                           .attr('fill', 'black')
                           .attr('text-anchor', 'middle')
                           .text('Avg. Highway MPG')
-                          .style('font-size', '1em')
+                          .style('font-size', '1.2em')
 
                     var y = d3.scaleLog()
                             .domain([8, 160])
@@ -122,12 +122,12 @@
 
                     yAxisG.append('text')
                           .attr('x', -innerHeight / 2)
-                          .attr('y', -75)
+                          .attr('y', -55)
                           .attr('fill', 'black')
                           .attr('transform', 'rotate(-90)')
                           .attr('text-anchor', 'middle')
                           .text('Avg. City MPG')
-                          .style('font-size', '1em')
+                          .style('font-size', '1.2em')
 
                     var c = d3.scaleOrdinal()
                             .domain([0, 2, 3, 4, 6, 8, 10, 12])

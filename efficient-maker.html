@@ -108,12 +108,12 @@
                     .attr('y', 60)
                     .attr('fill', 'black')
                     .text('Estimated Avg. MPG')
-                    .style('font-size', '1em')
+                    .style('font-size', '1.1em')
 
                 //y-axis tick 
                 const yAxisG = g.append('g')
 
-                yAxisG.style('font-size', '1em')
+                yAxisG.style('font-size', '1.1em')
                     .call(d3.axisLeft(yScale))
                     .select('.domain')
                       .remove()

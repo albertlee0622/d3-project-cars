@@ -40,20 +40,20 @@
     </section>
 
     <section class="main-content">
-      <div class="nav">
-        <form action="https://albertlee0622.github.io/d3-project-cars/">
-            <button type="submit" class="button" id="button-use">1</button>
-        </form>
-        <form action="https://albertlee0622.github.io/d3-project-cars/by-cylinder.html">
-            <button type="submit" class="button">2</button>
-        </form>
-        <form action="https://albertlee0622.github.io/d3-project-cars/inefficient-maker.html">
-            <button type="submit" class="button">3</button>
-        </form>
-        <form action="https://albertlee0622.github.io/d3-project-cars/efficient-maker.html">
-          <button type="submit" class="button">4</button>
-      </form>
-    </div>
+        <div class="nav">
+            <form action="https://albertlee0622.github.io/d3-project-cars/">
+                <button type="submit" class="button" id="button-use">1</button>
+            </form>
+            <form action="https://albertlee0622.github.io/d3-project-cars/by-cylinder.html">
+                <button type="submit" class="button">2</button>
+            </form>
+            <form action="https://albertlee0622.github.io/d3-project-cars/inefficient-maker.html">
+                <button type="submit" class="button">3</button>
+            </form>
+            <form action="https://albertlee0622.github.io/d3-project-cars/efficient-maker.html">
+              <button type="submit" class="button">4</button>
+          </form>
+        </div>
       <div id="scatter_overview"></div>
       <div id="tooltip" class="hidden">
         <p><strong ><span id="make">make</span></strong></p>
@@ -130,8 +130,8 @@
                           .style('font-size', '1em')
 
                     var c = d3.scaleOrdinal()
-                            .domain(data.map(d => d.Fuel))
-                            .range(["red", "blue", "green"])
+                            .domain([0, 2, 3, 4, 6, 8, 10, 12])
+                            .range(["#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f","#bf5b17","#666666"])
                     
                     //chart content
                     g.append("g")
@@ -142,8 +142,8 @@
                             .attr("cx", function(d) { return x(d.AverageHighwayMPG) })
                             .attr("cy", function(d) { return y(d.AverageCityMPG) })
                             .attr("r", 6)
-                            .style("fill", function(d) { return c(d.Fuel)})
-                            .style("opacity", 0.35)
+                            .style("fill", function(d) { return c(d.EngineCylinders)})
+                            .style("opacity", 0.7)
                             .style("stroke", "white")
                         .on("mouseover", function(d) {
                           this.setAttribute('r', '8')
@@ -175,12 +175,12 @@
                         .attr('x', innerWidth / 2)
                         .attr('y', -40)
                         .attr('text-anchor', 'middle')
-                        .text('MPG Overview by Fuel Type')
+                        .text('MPG Overview by Engine Cylinders')
                         .style('font-family', 'sans-serif')
                         .style('font-size', '1.5em')
 
                     //add annotation
-                    const annotations = [
+                    const annotations1 = [
                       {
                         note: {
                           label: " are clusterd at high MPG positions",
@@ -190,19 +190,47 @@
                         y: 120
                       }
                     ]
-                    const makeAnnotations = d3.annotation().annotations(annotations)
-                    d3.select("#canvas").append('g').call(makeAnnotations)
+                    const makeAnnotations1 = d3.annotation().annotations(annotations1)
+                    d3.select("#canvas").append('g').call(makeAnnotations1)
+
+                    const annotations2 = [
+                      {
+                        note: {
+                          label: "between engine sizes and MPG",
+                          title: "Trade-off"
+                        },
+                        x: 400,
+                        y: 520
+                      }
+                    ]
+                    const makeAnnotations2 = d3.annotation().annotations(annotations2)
+                    d3.select("#canvas").append('g').call(makeAnnotations2)
                   
                    //add legend
+                   //"#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f","#bf5b17","#666666"
                    const colorLegend = d3.select("#canvas")
-                   let legendCx = innerWidth + 40
-                   let legendCy = innerHeight
-                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy).attr('r', 5).style('fill', 'green').style('opacity', 0.35)
-                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 20).attr('r', 5).style('fill', 'blue').style('opacity', 0.35)     
-                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 40).attr('r', 5).style('fill', 'red').style('opacity', 0.35)
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('Electricity').style('font-size', '1em').attr("alignment-baseline","middle")
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 20).text('Diesel').style('font-size', '1em').attr("alignment-baseline","middle")     
-                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 40).text('Gasoline').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   let legendCx = innerWidth + 80
+                   let legendCy = innerHeight - 60
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy).attr('r', 5).style('fill', '#7fc97f').style('opacity', 0.7)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 20).attr('r', 5).style('fill', '#beaed4').style('opacity', 0.7)     
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 40).attr('r', 5).style('fill', '#fdc086').style('opacity', 0.7)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 60).attr('r', 5).style('fill', '#ffff99').style('opacity', 0.7)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 80).attr('r', 5).style('fill', '#386cb0').style('opacity', 0.7)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 100).attr('r', 5).style('fill', '#f0027f').style('opacity', 0.7)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 120).attr('r', 5).style('fill', '#bf5b17').style('opacity', 0.7)
+                   colorLegend.append('circle').attr('cx', legendCx).attr('cy', legendCy + 140).attr('r', 5).style('fill', '#666666').style('opacity', 0.7)
+                   
+                   colorLegend.append('text').attr('x', legendCx - 10).attr('y', legendCy - 20).text('# of Cyl.').style('font-size', '1em').style("font-weight", "bold").attr("alignment-baseline","middle")
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy).text('0').style('font-size', '1em').attr("alignment-baseline","middle")
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 20).text('2').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 40).text('3').style('font-size', '1em').attr("alignment-baseline","middle")  
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 60).text('4').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 80).text('6').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 100).text('8').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 120).text('10').style('font-size', '1em').attr("alignment-baseline","middle")     
+                   colorLegend.append('text').attr('x', legendCx + 20).attr('y', legendCy + 140).text('12').style('font-size', '1em').attr("alignment-baseline","middle")     
+
+
 
         })
         
